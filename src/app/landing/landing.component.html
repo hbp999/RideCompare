@@ -1,0 +1,36 @@
+<!-- landing.component.html -->
+<div class="container">
+  <h2>Find the Best Price for Your Ride</h2>
+  <form (ngSubmit)="compareFares()">
+    <div class="form-group">
+      <label for="location"></label>
+      <input type="text" class="form-control" id="location" placeholder="Enter your location" [(ngModel)]="location" required>
+    </div>
+    <div class="form-group">
+      <label for="destination"></label>
+      <input type="text" class="form-control" id="destination" placeholder="Enter your destination" [(ngModel)]="destination" required>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Compare Fares</button>
+    
+  </form>
+  
+
+  <div *ngIf="fares && fares.length > 0" class="mt-4">
+    <h4>Compare Fares</h4>
+    <div class="row">
+      <div class="col-md-6" *ngFor="let fare of fares; let i = index;">
+        <div class="card mb-3">
+          <div class="card-body">
+            <img [src]="fare.logo" class="img-fluid mb-3 fare-logo" alt="Logo">
+            <h5 class="card-title">{{ fare.service }}</h5>
+            <p class="card-text">Price: {{ fare.price }}</p>
+            <p class="card-text">Estimated Time of Arrival: {{ fare.eta }}</p>
+           
+            <a [href]="fare.url" class="btn btn-primary btn-block">Book</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
